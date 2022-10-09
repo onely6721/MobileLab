@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">MobileLab</string>
-    <string name="button_user">Go to User</string>
-    <string name="button_question">Go to Question</string>
-    <string name="button_exit">Exit</string>
-    <string name="button_save">Save</string>
+    <string name="app_name">Оракул</string>
+    <string name="button_user">Налаштування</string>
+    <string name="button_question">Задати питання</string>
+    <string name="button_exit">Вихід</string>
+    <string name="button_save">Зберегти</string>
     <string name="first_name_text">Enter first name</string>
     <string name="second_name_text">Enter second name</string>
     <string name="birthday_text">Select Date</string>
