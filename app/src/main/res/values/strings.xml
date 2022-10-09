@@ -3,4 +3,15 @@
     <string name="button_user">Go to User</string>
     <string name="button_question">Go to Question</string>
     <string name="button_exit">Exit</string>
+    <string name="button_save">Save</string>
+    <string name="first_name_text">Enter first name</string>
+    <string name="second_name_text">Enter second name</string>
+    <string name="birthday_text">Select Date</string>
+    <string name="sex_text">Choose sex</string>
+    <string name="male_text">Male</string>
+    <string name="female_text">Female</string>
+    <string name="information_text">You information</string>
+    <string name="question_text">Enter you question</string>
+    <string name="question_button">Ask!</string>
+
 </resources>
