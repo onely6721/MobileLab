@@ -1,9 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserActivity">
+    tools:context=".QuestionActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/first_name_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/first_name_text" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/second_name_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/first_name_input"
+        android:text="@string/second_name_text" />
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/date_input"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/second_name_input"
+    />
+    <Button
+        android:id="@+id/choose_birthday_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/birthday_text"
+        android:layout_below="@id/second_name_input"
+        android:layout_toEndOf="@id/date_input"
+        />
+    <TextView
+        android:id="@+id/sex_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sex_text"
+        android:layout_below="@+id/choose_birthday_button"/>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/sex_text">
+        <RadioButton
+            android:id="@+id/male_radio_button"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="@string/male_text"
+            />
+        <RadioButton
+            android:id="@+id/female_radio_button"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="@string/female_text"
+            android:layout_toEndOf="@id/male_radio_button"
+            android:layout_below="@id/sex_text"
+            />
+    </RadioGroup>
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save"
+        android:layout_below="@id/radioGroup"
+        />
+
+    <TextView
+        android:id="@+id/information_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/information_text"
+        android:layout_below="@+id/save_button"/>
+    <TextView
+        android:id="@+id/first_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/information_text"/>
+    <TextView
+        android:id="@+id/second_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/first_name_text"/>
+    <TextView
+        android:id="@+id/birthday_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/second_name_text"/>
+    <TextView
+        android:id="@+id/sex_info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/birthday_text"/>
+
+</RelativeLayout>
