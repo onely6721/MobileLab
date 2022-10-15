@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,19 +19,64 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.concurrent.ExecutorService;
+
 public class QuestionFragment extends Fragment {
+    public static final String TAG =
+            QuestionFragment.class.getSimpleName();
+
+    private int sum;
     private String answer;
     TextInputEditText questionInput;
     TextView answerTextView;
     private QuestionService service;
 
+    private ExecutorService executorService;
+    private Handler handler = new Handler();
+
     private void onQuestionClick(View v) {
-        String question = questionInput.getText().toString();
+        executorService.submit(() -> {
+            try {
+                String question = questionInput.getText().toString();
 
-        if (service == null) return;
-        answer = service.getAnswer(question);
+                sum = 0;
 
-        answerTextView.setText(answer);
+                for(char ch: question.toCharArray()) {
+                    sum += ch;
+                }
+
+                sum = sum % 7;
+
+                answer = "Не знаю";
+                switch (sum) {
+                    case(1):
+                        answer = "Так";
+                        break;
+                    case(2):
+                        answer = "Ні";
+                        break;
+                    case(3):
+                        answer = "Можливо";
+                        break;
+                    case(4):
+                        answer = "Цілком вірогідно";
+                        break;
+                    case(5):
+                        answer = "Малоймовірно";
+                        break;
+                    case(6):
+                        answer = "Не знаю";
+                        break;
+                    default:
+                        break;
+                }
+                handler.post(() -> {
+                    answerTextView.setText(answer);
+                });
+            } catch (Exception e) {
+                Log.e(TAG, "Error!", e);
+            }
+        });
 
     }
 
@@ -65,11 +111,9 @@ public class QuestionFragment extends Fragment {
         super.onStart();
         Intent intent = new Intent(getActivity(), QuestionService.class);
         getActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-        Log.d("tat","connected");
     }
     @Override
     public void onStop() {
-        Log.d("tat","disconnedted");
         super.onStop();
         getActivity().unbindService(serviceConnection);
     }
