@@ -1,6 +1,7 @@
 package com.example.mobilelab;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +15,25 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.questionButton)
                 .setOnClickListener(button -> {
-                    Intent  intent = new Intent(this, QuestionActivity.class);
-                    startActivity(intent);
+                    QuestionFragment questionFragment = new QuestionFragment();
+                    for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                    }
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.container, questionFragment)
+                            .commit();
                 });
         findViewById(R.id.userButton)
                 .setOnClickListener(button -> {
-                    Intent  intent = new Intent(this, UserActivity.class);
-                    startActivity(intent);
+                    UserFragment userFragment = new UserFragment();
+                    for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                    }
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.container, userFragment)
+                            .commit();
                 });
         findViewById(R.id.exitButton)
                 .setOnClickListener(button -> {
