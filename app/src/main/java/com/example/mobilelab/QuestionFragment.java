@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class QuestionFragment extends Fragment {
     public static final String TAG =
@@ -31,7 +32,7 @@ public class QuestionFragment extends Fragment {
     TextView answerTextView;
     private QuestionService service;
 
-    private ExecutorService executorService;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
     private Handler handler = new Handler();
 
     private void onQuestionClick(View v) {
