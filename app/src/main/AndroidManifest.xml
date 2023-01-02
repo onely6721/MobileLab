@@ -12,15 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileLab"
         tools:targetApi="31">
+        <service android:name=".QuestionService" />
         <activity
-            android:name=".UserActivity"
+            android:name=".UserFragment"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".QuestionActivity"
+            android:name=".QuestionFragment"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

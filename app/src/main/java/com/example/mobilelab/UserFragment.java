@@ -1,10 +1,15 @@
 package com.example.mobilelab;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -13,7 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
-public class UserActivity extends AppCompatActivity {
+public class UserFragment extends Fragment {
     private TextView firstNameTextView;
     private TextView secondNameTextView;
     private TextView ageTextView;
@@ -72,7 +77,7 @@ public class UserActivity extends AppCompatActivity {
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(null,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
@@ -87,19 +92,32 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
-        firstNameTextView = findViewById(R.id.first_name_text);
-        secondNameTextView = findViewById(R.id.second_name_text);
-        ageTextView = findViewById(R.id.birthday_text);
-        sexTextView = findViewById(R.id.sex_info_text);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedState) {
+        // layout fragment_content.xml will be displayed
+        return inflater.inflate(
+                R.layout.activity_user,
+                container,
+                false
+        );
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view,
+                              @Nullable Bundle savedState) {
+        super.onViewCreated(view, savedState);
+        firstNameTextView = view.findViewById(R.id.first_name_text);
+        secondNameTextView = view.findViewById(R.id.second_name_text);
+        ageTextView = view.findViewById(R.id.birthday_text);
+        sexTextView = view.findViewById(R.id.sex_info_text);
 
 
-        firstNameInput = findViewById(R.id.first_name_input);
-        secondNameInput = findViewById(R.id.second_name_input);
-        dateInput = findViewById(R.id.date_input);
+        firstNameInput = view.findViewById(R.id.first_name_input);
+        secondNameInput = view.findViewById(R.id.second_name_input);
+        dateInput = view.findViewById(R.id.date_input);
 
 
         firstNameTextView.setText("You first name:");
@@ -107,20 +125,22 @@ public class UserActivity extends AppCompatActivity {
         ageTextView.setText("You birthday:");
         sexTextView.setText("You sex:");
 
-        findViewById(R.id.save_button).setOnClickListener(button -> {
+        view.findViewById(R.id.save_button).setOnClickListener(button -> {
             this.onSaveClick();
         });
 
-        findViewById(R.id.choose_birthday_button).setOnClickListener(button -> {
+        view.findViewById(R.id.choose_birthday_button).setOnClickListener(button -> {
             this.onChooseDateClick(button);
         });
 
-        findViewById(R.id.male_radio_button).setOnClickListener(radioButton -> {
+        view.findViewById(R.id.male_radio_button).setOnClickListener(radioButton -> {
             this.onSwitchSexClick(radioButton);
         });
-        findViewById(R.id.female_radio_button).setOnClickListener(radioButton -> {
+        view.findViewById(R.id.female_radio_button).setOnClickListener(radioButton -> {
             this.onSwitchSexClick(radioButton);
         });
 
     }
+
+
 }
